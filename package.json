@@ -1,0 +1,20 @@
+{
+  "name": "react-tdd-cleanarchitecture",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rafael-Casaque/React-TDD-CleanArchitecture.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rafael-Casaque/React-TDD-CleanArchitecture/issues"
+  },
+  "homepage": "https://github.com/Rafael-Casaque/React-TDD-CleanArchitecture#readme"
+}
