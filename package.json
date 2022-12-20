@@ -22,6 +22,7 @@
   "homepage": "https://github.com/Rafael-Casaque/React-TDD-CleanArchitecture#readme",
   "devDependencies": {
     "@faker-js/faker": "^7.6.0",
+    "@types/axios": "^0.14.0",
     "@types/faker": "^6.6.9",
     "@types/jest": "^29.2.4",
     "@types/node": "^18.11.17",
@@ -39,5 +40,8 @@
     "lint-staged": "^13.1.0",
     "ts-jest": "^29.0.3",
     "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "axios": "^1.2.1"
   }
 }
