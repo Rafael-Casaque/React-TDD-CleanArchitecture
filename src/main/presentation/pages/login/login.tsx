@@ -14,18 +14,24 @@ const Login: React.FC<Props> = ({ validation }: Props) => {
         isLoading: false,    
         email: '',
         password: '',
-        emailError: 'Campo obrigatório',
+        emailError: '',
         passwordError: 'Campo obrigatório',
         mainError: '',        
     })    
 
     useEffect(() => {
-        validation.validate('email', state.email)
-    },[state.email]) //coloca o stateEmail como dependente, toda vez que ele é alterado é disparado a função validattion
+        setState({
+            ...state,
+            emailError: validation.validate('email', state.email)
+        })        
+    },[state.email])
 
     useEffect(() => {
-        validation.validate('password', state.password)
-    },[state.password]) //coloca o statepassword como dependente, toda vez que ele é alterado é disparado a função validattion
+        setState({
+            ...state,
+            emailError: validation.validate('password', state.password)
+        })                
+    },[state.password])
 
     return (
         <div className={Styles.login}>
