@@ -1,25 +1,31 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import Styles from "./login-styles.scss";
 import { Header, Footer, Input, FormStatus } from "../../components"
 import Context from "@/main/presentation/components/contexts/form/form-context"
+import { Validation } from "../../protocols/validation";
 
+type Props = {
+    validation: Validation
+}
 
-const Login: React.FC = () => {
+const Login: React.FC<Props> = ({ validation }: Props) => {
 
-    const [state] = useState({
-        isLoading: false    
-    })
+    const [state, setState] = useState({
+        isLoading: false,    
+        email: '',
+        emailError: 'Campo obrigatório',
+        passwordError: 'Campo obrigatório',
+        mainError: '',        
+    })    
 
-    const [errorState] = useState({
-        email: 'Campo obrigatório',
-        password: 'Campo obrigatório',
-        main: '',        
-    })
+    useEffect(() => {
+        validation.validate({email: state.email})
+    },[state.email]) //coloca o stateEmail como dependente, toda vez que ele é alterado é disparado a função validattion
 
     return (
         <div className={Styles.login}>
             <Header />
-            <Context.Provider value={{ state, errorState }}>
+            <Context.Provider value={{ state, setState }}>
                 <form className={Styles.form}>
                     <h2>Login</h2>
                     <Input type="email" name="email" placeholder="Digite seu e-mail" />
