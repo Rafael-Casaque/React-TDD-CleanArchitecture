@@ -20,11 +20,11 @@ const Login: React.FC<Props> = ({ validation }: Props) => {
     })    
 
     useEffect(() => {
-        validation.validate({email: state.email})
+        validation.validate('email', state.email)
     },[state.email]) //coloca o stateEmail como dependente, toda vez que ele é alterado é disparado a função validattion
 
     useEffect(() => {
-        validation.validate({password: state.password})
+        validation.validate('password', state.password)
     },[state.password]) //coloca o statepassword como dependente, toda vez que ele é alterado é disparado a função validattion
 
     return (
