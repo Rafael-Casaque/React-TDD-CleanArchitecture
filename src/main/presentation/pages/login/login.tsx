@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Styles from "./login-styles.scss";
 import { Header, Footer, Input, FormStatus } from "../../components"
 import Context from "@/main/presentation/components/contexts/form/form-context"
@@ -10,39 +10,49 @@ type Props = {
     authentication: Authentication
 }
 
-const Login: React.FC<Props> = ({ validation,authentication }: Props) => {
+const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
 
     const [state, setState] = useState({
-        isLoading: false,    
+        isLoading: false,
         email: '',
         password: '',
         emailError: '',
         passwordError: '',
-        mainError: '',        
-    })    
-        
+        mainError: '',
+    })
+
     useEffect(() => {
-        if(validation!=undefined){
-        setState({
-            ...state,
-            emailError: validation.validate('email', state.email),
-            passwordError: validation.validate('password', state.password)
-        })}        
-    },[state.email, state.password])    
+        if (validation != undefined) {
+            setState({
+                ...state,
+                emailError: validation.validate('email', state.email),
+                passwordError: validation.validate('password', state.password)
+            })
+        }
+    }, [state.email, state.password])
 
     const handleSubmit = async (evnt: React.FormEvent<HTMLFormElement>): Promise<void> => {
         event.preventDefault()
-        if(state.isLoading || state.emailError || state.passwordError){
-            return
+        try {
+            if (state.isLoading || state.emailError || state.passwordError) {
+                return
+            }
+            setState({
+                ...state,
+                isLoading: true
+            })
+            await authentication.auth({
+                email: state.email,
+                password: state.password
+            })
         }
-        setState({
-            ...state,
-            isLoading: true
-        })
-        await authentication.auth({
-            email: state.email,
-            password: state.password
-        })
+        catch (error) {
+            setState({
+                ...state,
+                isLoading: false,
+                mainError: error.message
+            })
+        }
     }
 
     return (
