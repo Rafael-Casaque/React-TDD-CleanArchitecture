@@ -5,6 +5,7 @@ import Login from './login';
 import { ValidationStub, AuthenticationSpy } from '@/main/presentation/test';
 import { faker } from '@faker-js/faker';
 import { InvalidCredentialsError } from '@/domain/errors';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 type SutTypes = {
     sut: RenderResult
@@ -19,7 +20,11 @@ const makeSut = (params?: SutParams): SutTypes => {
     const validationStub = new ValidationStub()
     const authenticationSpy = new AuthenticationSpy()
     validationStub.errorMessage = params?.validationError
-    const sut = render(<Login validation={validationStub} authentication={authenticationSpy} />)
+    const sut = render(
+    <Router>
+        <Login validation={validationStub} authentication={authenticationSpy} />
+    </Router>
+    )
     return {
         sut,
         authenticationSpy
