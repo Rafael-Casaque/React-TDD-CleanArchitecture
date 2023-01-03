@@ -2,7 +2,7 @@ import React from 'react'
 import 'jest-localstorage-mock'
 import { render, RenderResult, fireEvent, cleanup, waitFor } from '@testing-library/react'
 import Login from './login';
-import { ValidationStub, AuthenticationSpy } from '@/main/presentation/test';
+import { ValidationStub, AuthenticationSpy } from '@/presentation/test';
 import { faker } from '@faker-js/faker';
 import { InvalidCredentialsError } from '@/domain/errors';
 import { BrowserRouter as Router } from 'react-router-dom';
